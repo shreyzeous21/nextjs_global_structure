@@ -22,21 +22,10 @@ export default function UserProfile() {
             type="button"
             className="
               flex items-center gap-3
-              rounded-xl
-              border
-              bg-background
-              px-2 py-2
-              shadow-sm
-              transition-all
-              hover:bg-muted/50
-              hover:shadow-md
-              focus:outline-none
-              focus:ring-2
-              focus:ring-ring
-              focus:ring-offset-2
+               cursor-pointer
             "
           >
-            <Avatar className="size-9 border">
+            <Avatar className="size-9 border ">
               <AvatarImage
                 src="https://github.com/shadcn.png"
                 alt="Shrey Sadhukhan"
@@ -44,7 +33,7 @@ export default function UserProfile() {
               <AvatarFallback className="font-semibold">SS</AvatarFallback>
             </Avatar>
 
-            <div className="hidden min-w-0 text-left sm:block">
+            <div className="hidden text-left sm:block">
               <p className="max-w-32 truncate text-sm font-semibold">
                 Shrey Sadhukhan
               </p>
@@ -55,11 +44,7 @@ export default function UserProfile() {
         }
       />
 
-      <PopoverContent
-        align="end"
-        sideOffset={8}
-        className="w-80 rounded-xl p-0"
-      >
+      <PopoverContent align="end" className="w-80 rounded-xl p-0">
         {/* Account information */}
         <PopoverHeader className="space-y-3 p-4">
           <PopoverTitle className="text-sm">Account Information</PopoverTitle>

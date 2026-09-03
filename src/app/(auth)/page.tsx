@@ -3,7 +3,7 @@ import LoginForm from "./_components/LoginForm";
 import Image from "next/image";
 
 export default async function AuthPage() {
-  const session = false;
+  const session = true;
 
   if (session) {
     redirect("/dashboard");

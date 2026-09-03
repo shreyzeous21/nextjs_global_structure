@@ -36,10 +36,10 @@ export default function AutoBreadcrumb() {
 
               <BreadcrumbItem>
                 {isLast ? (
-                  <BreadcrumbPage className="text-lg">{label}</BreadcrumbPage>
+                  <BreadcrumbPage className="text-xs">{label}</BreadcrumbPage>
                 ) : (
                   <BreadcrumbLink
-                    render={<Link href={href} className="text-lg" />}
+                    render={<Link href={href} className="text-xs" />}
                   >
                     {label}
                   </BreadcrumbLink>

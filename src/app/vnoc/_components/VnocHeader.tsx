@@ -14,7 +14,7 @@ export default function VnocHeader() {
 
       <span className="text-blue-500 text-xl font-bold">Virtual NOC</span>
 
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-2">
         <UserProfile />
         <ModeToggle />
       </div>
