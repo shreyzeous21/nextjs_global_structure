@@ -13,10 +13,7 @@ export default async function DashboardLayout({
       <DashboardSidebar />
       <SidebarInset>
         <DashboardHeader />
-        <main className="mt-2 px-4">
-          {children}
-          <Footer />
-        </main>
+        <main className="mt-2 px-4">{children}</main>
       </SidebarInset>
     </SidebarProvider>
   );

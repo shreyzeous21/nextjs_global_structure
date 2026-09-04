@@ -26,7 +26,6 @@ export default function VnocSidebar({ session }: { session: any }) {
 
   return (
     <Sidebar>
-      {/* Logo */}
       <SidebarHeader className="flex h-[4.3rem] items-center justify-center border-b">
         <Link href="/" className="transition-opacity hover:opacity-80">
           <Image
@@ -40,7 +39,6 @@ export default function VnocSidebar({ session }: { session: any }) {
         </Link>
       </SidebarHeader>
 
-      {/* Menu */}
       <SidebarContent className="px-2 py-4">
         <SidebarMenu className="gap-2">
           {sidebarItems.map((item) => {
@@ -108,7 +106,6 @@ export default function VnocSidebar({ session }: { session: any }) {
         </SidebarMenu>
       </SidebarContent>
 
-      {/* Footer */}
       <SidebarFooter className="border-t px-3 py-3">
         <div className="space-y-2">
           <div className="flex items-center justify-between gap-2">

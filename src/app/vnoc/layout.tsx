@@ -24,7 +24,6 @@ export default async function VnocLayout({
       <VnocSidebar session={session} />
       <SidebarInset>
         <VnocHeader />
-
         <main className="mt-2 p-4">{children}</main>
       </SidebarInset>
     </SidebarProvider>
