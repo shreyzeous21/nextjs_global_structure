@@ -48,10 +48,9 @@ export function CsvDownload({
   return (
     <Button
       type="button"
-      variant="secondary"
+      variant="link"
       onClick={handleDownload}
       disabled={!data.length || downloading}
-      className=""
     >
       <FaFileCsv className="size-4" />
       <span>{downloading ? "..." : label}</span>

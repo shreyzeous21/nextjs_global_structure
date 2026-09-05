@@ -1,6 +1,6 @@
 "use client";
 
-import { getVendorList } from "@/actions/getUserAction";
+import { getVendorList } from "@/actions/get-use-action";
 import { useQuery } from "@tanstack/react-query";
 
 export const useUser = () => {

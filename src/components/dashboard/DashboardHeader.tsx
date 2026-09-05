@@ -1,4 +1,5 @@
 "use client";
+
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { ModeToggle } from "@/components/layout/ModeToggle";
 import UserProfile from "@/components/layout/UserProfile";

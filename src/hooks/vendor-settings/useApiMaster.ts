@@ -1,6 +1,6 @@
 "use client";
 
-import { getApiMaster } from "@/actions/vendor-settings/apiMasterAction";
+import { getApiMaster } from "@/actions/vendor-settings/api-master-action";
 import { useQuery } from "@tanstack/react-query";
 
 export const useApiMaster = () => {

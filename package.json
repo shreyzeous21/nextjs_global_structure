@@ -5,16 +5,18 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "c": "npx shadcn@latest add",
     "start": "next start"
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",
+    "@hookform/resolvers": "^5.9.1",
     "@tanstack/react-query": "^5.102.8",
     "@tanstack/react-query-devtools": "^5.102.8",
+    "@tanstack/react-table": "^8.21.3",
     "bcryptjs": "^3.0.3",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "cn": "^0.2.5",
     "input-otp": "^1.5.0",
     "lucide-react": "^1.39.0",
     "mysql2": "^3.24.2",
@@ -24,6 +26,7 @@
     "nodemailer": "^8.0.11",
     "react": "19.2.8",
     "react-dom": "19.2.8",
+    "react-hook-form": "^7.87.0",
     "react-icons": "^5.7.0",
     "shadcn": "^4.19.1",
     "sonner": "^2.0.8",

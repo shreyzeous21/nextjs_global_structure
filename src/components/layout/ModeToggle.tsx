@@ -28,7 +28,7 @@ export function ModeToggle() {
     <Button
       variant="outline"
       onClick={() => setTheme(isDark ? "light" : "dark")}
-      className="h-9 w-9"
+      className="h-8 w-8"
       aria-label="Toggle theme"
     >
       {isDark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
