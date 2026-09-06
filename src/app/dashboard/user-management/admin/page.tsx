@@ -4,13 +4,13 @@ export default function AdminPage() {
   return (
     <Tabs defaultValue="admin-list" className="w-full">
       <TabsList>
-        <TabsTrigger value="admin-list" className="w-full">Admin Table</TabsTrigger>
-        <TabsTrigger value="admin-groups" className="w-full">Admin Group</TabsTrigger>
+        <TabsTrigger value="admin-list">Admin User Settings</TabsTrigger>
+        <TabsTrigger value="admin-groups" disabled>
+          Admin User Group
+        </TabsTrigger>
       </TabsList>
-      <TabsContent value="admin-list">
-        Make changes to your account here.
-      </TabsContent>
-      <TabsContent value="admin-groups">Change your password here.</TabsContent>
+      <TabsContent value="admin-list">Admin User Settings</TabsContent>
+      <TabsContent value="admin-groups">Admin User Group</TabsContent>
     </Tabs>
   );
 }
