@@ -121,7 +121,9 @@ export async function GET() {
   const memoryPercent = Math.round((usedMem / totalMem) * 100);
 
   const memUsage = process.memoryUsage();
-  const heapPercent = Math.round((memUsage.heapUsed / memUsage.heapTotal) * 100);
+  const heapPercent = Math.round(
+    (memUsage.heapUsed / memUsage.heapTotal) * 100,
+  );
 
   const cpus = os.cpus();
   const loadAvg = os.loadavg();
@@ -132,8 +134,7 @@ export async function GET() {
     dbStatus = await checkDatabase();
   }
 
-  const status: HealthStatus =
-    dbStatus === "down" ? "unhealthy" : "healthy";
+  const status: HealthStatus = dbStatus === "down" ? "unhealthy" : "healthy";
 
   const responseTime = Date.now() - startTime;
 
@@ -142,7 +143,7 @@ export async function GET() {
     timestamp: new Date().toISOString(),
     uptime: {
       seconds: Math.floor(process.uptime()),
-      human: formatUptime(process.uptime()), // 
+      human: formatUptime(process.uptime()), //
     },
     version: {
       node: process.version,

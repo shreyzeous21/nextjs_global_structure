@@ -23,7 +23,7 @@ export default function VnocCard({
     pathname.startsWith(item.href),
   )?.title;
   return (
-    <Card className="w-full h-full">
+    <Card className="w-full min-h-screen">
       {note && <span className="text-center text-red-500">{note}</span>}
       <CardHeader className="border-b">
         <CardTitle className="text-2xl font-bold">{title}</CardTitle>

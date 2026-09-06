@@ -35,44 +35,30 @@ export default function LoginForm() {
   };
 
   return (
-    <Card className="w-full max-w-md border-white/20 bg-white/70 shadow-2xl shadow-black/5 backdrop-blur-xl rounded-3xl">
-      <CardHeader className="items-center space-y-4 pb-2 pt-8">
-        <div className="rounded-2xl bg-white p-3 shadow-lg shadow-black/5">
-          <Image
-            src="/blueconnectsLogo.png"
-            alt="BlueConnects Logo"
-            width={140}
-            height={140}
-            priority
-          />
-        </div>
-        <CardTitle className="text-lg font-semibold text-gray-800">
+    <Card className="w-full max-w-xl shadow-xl">
+      <CardHeader className="border-b">
+        <CardTitle className="text-center text-xl font-bold">
           Sign In to your Account
         </CardTitle>
       </CardHeader>
 
-      <CardContent className="px-8 pt-6 pb-2">
+      <CardContent className="pt-6">
         <FieldSet>
           <FieldGroup>
             <Field>
-              <Label className="text-xs font-medium uppercase tracking-wider text-gray-500">
-                Email
-              </Label>
+              <Label htmlFor="email">Email</Label>
 
               <Input
                 id="email"
                 type="email"
                 name="email"
                 autoComplete="email"
-                placeholder="you@company.com"
-                className="h-11 rounded-xl border-gray-200/80 bg-white/60 text-sm placeholder:text-gray-400 focus:border-[#00D2FF] focus:ring-[#00D2FF]/20 focus:ring-2"
+                placeholder="Enter your email"
               />
             </Field>
 
             <Field>
-              <Label className="text-xs font-medium uppercase tracking-wider text-gray-500">
-                Password
-              </Label>
+              <Label htmlFor="password">Password</Label>
 
               <div className="relative">
                 <Input
@@ -81,7 +67,7 @@ export default function LoginForm() {
                   name="password"
                   autoComplete="current-password"
                   placeholder="Enter your password"
-                  className="h-11 rounded-xl border-gray-200/80 bg-white/60 pr-10 text-sm placeholder:text-gray-400 focus:border-[#00D2FF] focus:ring-[#00D2FF]/20 focus:ring-2"
+                  className="pr-10"
                 />
 
                 <button
@@ -96,10 +82,10 @@ export default function LoginForm() {
                     w-10
                     items-center
                     justify-center
-                    rounded-r-xl
-                    text-gray-400
+                    rounded-r-md
+                    text-muted-foreground
                     transition-colors
-                    hover:text-gray-600
+                    hover:text-foreground
                     focus:outline-none
                   "
                   aria-label={showPassword ? "Hide password" : "Show password"}
@@ -117,11 +103,11 @@ export default function LoginForm() {
         </FieldSet>
       </CardContent>
 
-      <CardFooter className="px-8 pb-8 pt-2">
+      <CardFooter>
         <Button
           type="button"
           variant="default"
-          className="h-11 w-full rounded-xl bg-gradient-to-r from-[#00D2FF] to-[#3A86FF] text-sm font-semibold text-white shadow-lg shadow-[#00D2FF]/25 transition-all duration-200 hover:scale-[1.02] hover:shadow-xl hover:shadow-[#00D2FF]/30"
+          className="w-full"
           onClick={handleLogin}
         >
           Login

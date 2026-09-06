@@ -3,11 +3,11 @@
 import Datatable from "@/components/common/data-table/Datatable";
 import { Badge } from "@/components/ui/badge";
 import { useCatPermissionManagement } from "@/hooks/permission-management/use-cat-permission-management";
-import type { Category } from "@/actions/permission-management/pm-cat-action";
+
 import { ColumnDef } from "@tanstack/react-table";
 import { GlobalDeleteButton } from "@/components/common/GlobalDeleteButton";
 import AddEditButtonCategory from "./AddEditButtonCategory";
-import { useState } from "react";
+import { Category } from "@/types/pm-types";
 
 const userTypeLabels: Record<string, string> = {
   A: "Admin",

@@ -12,7 +12,7 @@ import AutoBreadcrumb from "../common/AutoBreadcrumb";
 
 export default function DashboardHeader() {
   return (
-    <header className="sticky top-0 z-10 flex items-center justify-between gap-4 border-b bg-sidebar p-4">
+    <header className="sticky top-0 z-10 flex items-center justify-between gap-4 border-b p-4 backdrop-blur-md">
       <div className="flex items-center gap-2">
         <SidebarTrigger className="-ml-1 " />
 
