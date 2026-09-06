@@ -1,14 +1,16 @@
 "use client";
 
 import {
-  type CategoryInput,
   addCategoryList,
   deleteCategoryList,
   getCategoryList,
   updateCategoryList,
 } from "@/actions/permission-management/pm-cat-action";
 
+import type { CategoryInput } from "@/types/pm-types";
+
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+
 import { toast } from "sonner";
 
 const QUERY_KEY = ["categoryList"];
@@ -26,13 +28,16 @@ export const useCatPermissionManagement = () => {
   });
 
   const addMutation = useMutation({
-    mutationFn: (input: CategoryInput) => {
-      return addCategoryList(input);
-    },
+    mutationFn: addCategoryList,
+
     onSuccess: () => {
       toast.success("Category added successfully");
-      queryClient.invalidateQueries({ queryKey: QUERY_KEY });
+
+      queryClient.invalidateQueries({
+        queryKey: QUERY_KEY,
+      });
     },
+
     onError: (error) => {
       toast.error(error.message);
     },
@@ -42,10 +47,15 @@ export const useCatPermissionManagement = () => {
     mutationFn: ({ id, input }: { id: number; input: CategoryInput }) => {
       return updateCategoryList(id, input);
     },
+
     onSuccess: () => {
       toast.success("Category updated successfully");
-      queryClient.invalidateQueries({ queryKey: QUERY_KEY });
+
+      queryClient.invalidateQueries({
+        queryKey: QUERY_KEY,
+      });
     },
+
     onError: (error) => {
       toast.error(error.message);
     },
@@ -55,10 +65,15 @@ export const useCatPermissionManagement = () => {
     mutationFn: (id: number) => {
       return deleteCategoryList(id);
     },
+
     onSuccess: () => {
       toast.success("Category deleted successfully");
-      queryClient.invalidateQueries({ queryKey: QUERY_KEY });
+
+      queryClient.invalidateQueries({
+        queryKey: QUERY_KEY,
+      });
     },
+
     onError: (error) => {
       toast.error(error.message);
     },
