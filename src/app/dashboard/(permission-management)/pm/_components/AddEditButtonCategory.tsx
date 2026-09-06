@@ -2,6 +2,7 @@
 
 import type { Category } from "@/actions/permission-management/pm-cat-action";
 import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
 import {
   Dialog,
   DialogContent,
@@ -22,22 +23,26 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { usePermissionManagement } from "@/hooks/permission-management/use-cat-permission-management";
+import { useCatPermissionManagement } from "@/hooks/permission-management/use-cat-permission-management";
 import React, { useState } from "react";
 
 type AddEditProps = {
   mode: "add" | "edit";
+  category?: Category;
 };
 
-export default function AddEditButton({ mode }: AddEditProps) {
+export default function AddEditButtonCategory({
+  mode,
+  category,
+}: AddEditProps) {
   const [open, setOpen] = useState(false);
   const [formData, setFormData] = useState({
-    utype: "",
-    cat_name: "",
-    cat_status: "Y",
+    utype: category?.utype ? category.utype.split(",") : [],
+    cat_name: category?.cat_name || "",
+    cat_status: category?.cat_status || "Y",
   });
 
-  const { addMutation } = usePermissionManagement();
+  const { addMutation, updateMutation } = useCatPermissionManagement();
 
   const userTypes = [
     { value: "SA", label: "Super Admin" },
@@ -54,12 +59,24 @@ export default function AddEditButton({ mode }: AddEditProps) {
     e.preventDefault();
 
     const form = new FormData();
-    form.append("utype", formData.utype);
+    form.append("utype", formData.utype.join(","));
     form.append("cat_name", formData.cat_name);
     form.append("cat_status", formData.cat_status);
 
-    await addMutation.mutateAsync(form);
+    if (mode === "add") {
+      await addMutation.mutateAsync(form);
+    } else {
+      await updateMutation.mutateAsync({
+        id: category?.id || 0,
+        formData: form,
+      });
+    }
     setOpen(false);
+    setFormData({
+      utype: [],
+      cat_name: "",
+      cat_status: "Y",
+    });
   };
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -81,19 +98,35 @@ export default function AddEditButton({ mode }: AddEditProps) {
         <FieldSet className="">
           <FieldGroup>
             <Field>
-              <Label htmlFor="userType">User Type</Label>
-              <Select
-                value={formData.utype}
-                onValueChange={(value) =>
-                  setFormData({ ...formData, utype: value as any })
-                }
-              >
-                {userTypes.map((userType) => (
-                  <SelectItem key={userType.value} value={userType.value}>
-                    {userType.label}
-                  </SelectItem>
+              <Label>User Type</Label>
+
+              <div className="flex items-center gap-3">
+                {userTypes.map((item) => (
+                  <div key={item.value} className="flex items-center gap-1">
+                    <Checkbox
+                      id={`user-type-${item.value}`}
+                      checked={formData.utype.includes(item.value)}
+                      onCheckedChange={(checked) => {
+                        setFormData((prev) => ({
+                          ...prev,
+                          utype: checked
+                            ? [...prev.utype, item.value]
+                            : prev.utype.filter(
+                                (value) => value !== item.value,
+                              ),
+                        }));
+                      }}
+                    />
+
+                    <Label
+                      htmlFor={`user-type-${item.value}`}
+                      className="font-normal"
+                    >
+                      {item.label}
+                    </Label>
+                  </div>
                 ))}
-              </Select>
+              </div>
             </Field>
           </FieldGroup>
 
@@ -121,7 +154,7 @@ export default function AddEditButton({ mode }: AddEditProps) {
                   setFormData({ ...formData, cat_status: value as any })
                 }
               >
-                <SelectTrigger className="w-[180px]">
+                <SelectTrigger className="w-45">
                   <SelectValue placeholder="Select status" />
                 </SelectTrigger>
                 <SelectContent>

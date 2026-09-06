@@ -3,6 +3,7 @@
 import {
   ColumnDef,
   PaginationState,
+  RowSelectionState,
   SortingState,
   VisibilityState,
   flexRender,
@@ -33,7 +34,7 @@ import {
   AlertCircle,
 } from "lucide-react";
 
-import { useState } from "react";
+import React, { useState } from "react";
 
 import { Checkbox } from "@/components/ui/checkbox";
 
@@ -49,7 +50,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -61,6 +62,7 @@ interface DataTableProps<TData, TValue> {
   error?: string;
   title?: string;
   headerAction?: React.ReactNode;
+  filterSection?: React.ReactNode;
 }
 
 export default function Datatable<TData, TValue>({
@@ -73,6 +75,7 @@ export default function Datatable<TData, TValue>({
   error,
   title = "",
   headerAction,
+  filterSection,
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
@@ -116,6 +119,10 @@ export default function Datatable<TData, TValue>({
 
         {headerAction}
       </div>
+
+      {filterSection && (
+        <CardHeader className="border-b">{filterSection}</CardHeader>
+      )}
 
       <CardContent className="space-y-4 pb-2">
         <div className="flex w-full items-center justify-between gap-2">
@@ -198,7 +205,7 @@ export default function Datatable<TData, TValue>({
               <TableHeader className="bg-muted/50">
                 {table.getHeaderGroups().map((headerGroup) => (
                   <TableRow key={headerGroup.id}>
-                    <TableHead className="w-[70px] text-center font-semibold">
+                    <TableHead className="w-17.5 text-center font-semibold">
                       S.No.
                     </TableHead>
 
@@ -308,15 +315,15 @@ export default function Datatable<TData, TValue>({
                           {serialNo}
                         </TableCell>
 
-                      {row.getVisibleCells().map((cell) => (
-                        <TableCell key={cell.id}>
-                          {flexRender(
-                            cell.column.columnDef.cell,
-                            cell.getContext(),
-                          )}
-                        </TableCell>
-                      ))}
-                    </TableRow>
+                        {row.getVisibleCells().map((cell) => (
+                          <TableCell key={cell.id}>
+                            {flexRender(
+                              cell.column.columnDef.cell,
+                              cell.getContext(),
+                            )}
+                          </TableCell>
+                        ))}
+                      </TableRow>
                     );
                   })
                 ) : (

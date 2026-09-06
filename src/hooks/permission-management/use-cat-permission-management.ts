@@ -12,7 +12,7 @@ import { toast } from "sonner";
 
 const QUERY_KEY = ["categoryList"];
 
-export const usePermissionManagement = () => {
+export const useCatPermissionManagement = () => {
   const queryClient = useQueryClient();
 
   const {
