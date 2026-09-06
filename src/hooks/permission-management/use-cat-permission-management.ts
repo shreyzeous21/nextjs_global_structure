@@ -1,6 +1,7 @@
 "use client";
 
 import {
+  type CategoryInput,
   addCategoryList,
   deleteCategoryList,
   getCategoryList,
@@ -25,8 +26,8 @@ export const useCatPermissionManagement = () => {
   });
 
   const addMutation = useMutation({
-    mutationFn: (formData: FormData) => {
-      return addCategoryList(formData);
+    mutationFn: (input: CategoryInput) => {
+      return addCategoryList(input);
     },
     onSuccess: () => {
       toast.success("Category added successfully");
@@ -38,8 +39,8 @@ export const useCatPermissionManagement = () => {
   });
 
   const updateMutation = useMutation({
-    mutationFn: ({ id, formData }: { id: number; formData: FormData }) => {
-      return updateCategoryList(id, formData);
+    mutationFn: ({ id, input }: { id: number; input: CategoryInput }) => {
+      return updateCategoryList(id, input);
     },
     onSuccess: () => {
       toast.success("Category updated successfully");

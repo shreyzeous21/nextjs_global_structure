@@ -14,7 +14,6 @@ export async function getCategoryList(): Promise<Category[]> {
   try {
     return await sqlQueryArray<Category>(
       "SELECT id, utype, cat_name, cat_status FROM tbl_permission_category ORDER BY id DESC",
-      { debug: true },
     );
   } catch (error) {
     console.error("Unable to fetch category list", error);
@@ -22,11 +21,17 @@ export async function getCategoryList(): Promise<Category[]> {
   }
 }
 
-export async function addCategoryList(formData: FormData): Promise<Category> {
+export type CategoryInput = {
+  utype: string;
+  cat_name: string;
+  cat_status: "Y" | "N";
+};
+
+export async function addCategoryList(input: CategoryInput): Promise<Category> {
   try {
-    const utype = String(formData.get("utype") ?? "").trim();
-    const cat_name = String(formData.get("cat_name") ?? "").trim();
-    const cat_status = String(formData.get("cat_status") ?? "").trim();
+    const utype = input.utype.trim();
+    const cat_name = input.cat_name.trim();
+    const cat_status = input.cat_status;
 
     if (!utype) {
       throw new Error("User type is required!");
@@ -79,12 +84,12 @@ export async function addCategoryList(formData: FormData): Promise<Category> {
 
 export async function updateCategoryList(
   id: number,
-  formData: FormData,
+  input: CategoryInput,
 ): Promise<Category> {
   try {
-    const utype = String(formData.get("utype") ?? "").trim();
-    const cat_name = String(formData.get("cat_name") ?? "").trim();
-    const cat_status = String(formData.get("cat_status") ?? "").trim();
+    const utype = input.utype.trim();
+    const cat_name = input.cat_name.trim();
+    const cat_status = input.cat_status;
 
     if (!id || id <= 0) {
       throw new Error("Invalid category ID!");

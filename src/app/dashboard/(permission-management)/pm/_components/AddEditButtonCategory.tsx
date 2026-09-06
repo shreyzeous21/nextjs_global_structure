@@ -58,17 +58,18 @@ export default function AddEditButtonCategory({
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const form = new FormData();
-    form.append("utype", formData.utype.join(","));
-    form.append("cat_name", formData.cat_name);
-    form.append("cat_status", formData.cat_status);
+    const input = {
+      utype: formData.utype.join(","),
+      cat_name: formData.cat_name,
+      cat_status: formData.cat_status as "Y" | "N",
+    };
 
     if (mode === "add") {
-      await addMutation.mutateAsync(form);
+      await addMutation.mutateAsync(input);
     } else {
       await updateMutation.mutateAsync({
         id: category?.id || 0,
-        formData: form,
+        input,
       });
     }
     setOpen(false);
