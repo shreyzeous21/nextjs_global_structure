@@ -1,6 +1,7 @@
 "use client";
 
-import { useUser } from "@/hooks/use-user";
+import { useEffect, useState } from "react";
+
 import { Field } from "../ui/field";
 import { Label } from "../ui/label";
 import {
@@ -12,24 +13,42 @@ import {
   SelectValue,
 } from "../ui/select";
 
+import { getVendorUser } from "@/functions/get-user";
+
 export default function SelectVendor() {
-  const { vendorList, isError, isLoading } = useUser();
+  const [vendorList, setVendorList] = useState<any[]>([]);
+
+  useEffect(() => {
+    const fetchVendors = async () => {
+      try {
+        const data = await getVendorUser();
+
+        setVendorList(Array.isArray(data) ? data : []);
+      } catch (error) {
+        console.error("Unable to fetch vendor users", error);
+        setVendorList([]);
+      }
+    };
+
+    fetchVendors();
+  }, []);
+
   return (
     <Field className="w-fit">
-      <Label className="">Vendor / MVNO</Label>
-      <Select items={vendorList as any[]}>
+      <Label>Vendor / MVNO</Label>
+
+      <Select>
         <SelectTrigger>
           <SelectValue placeholder="Select Vendor / MVNO" />
         </SelectTrigger>
 
         <SelectContent>
           <SelectGroup>
-            {Array.isArray(vendorList) &&
-              vendorList.map((vendor: any) => (
-                <SelectItem key={vendor.id} value={vendor.LoginID}>
-                  {vendor.LoginID}
-                </SelectItem>
-              ))}
+            {vendorList.map((vendor) => (
+              <SelectItem key={vendor.id} value={String(vendor.LoginID)}>
+                {vendor.LoginID}
+              </SelectItem>
+            ))}
           </SelectGroup>
         </SelectContent>
       </Select>
