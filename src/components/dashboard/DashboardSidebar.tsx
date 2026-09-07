@@ -14,6 +14,7 @@ import {
 } from "../ui/sidebar";
 import { sidebarItems } from "./constants";
 import { Badge } from "../ui/badge";
+import DashboardSidebarSearch from "./DashboardSidebarSearch";
 
 export default function DashboardSidebar() {
   const pathname = usePathname();
@@ -43,6 +44,11 @@ export default function DashboardSidebar() {
           />
         </Link>
       </SidebarHeader>
+
+      {/* Search */}
+      <div className="px-2 py-4">
+        <DashboardSidebarSearch />
+      </div>
 
       {/* Navigation */}
       <SidebarContent className="px-2 py-4">
