@@ -14,7 +14,7 @@ export default async function DashboardLayout({
       <DashboardSidebar />
       <SidebarInset>
         <DashboardHeader />
-        <main className="mt-2 p-4">
+        <main className="mt-2 lg:pt-20 lg:px-4 p-4">
           {children}
           <Bot />
         </main>
